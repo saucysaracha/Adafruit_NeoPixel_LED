@@ -32,25 +32,45 @@ void setup() {
 
 //rgb, rgb, rgb, rgb..
 
-// Change this to "loop" and the other to loop2 and run.  This will set all of the pixels to the same color in a seqeunce.
-// Change the values in the call pixels.Color(R,G,B) to change the color
+//Change this to "loop" and the other to loop2 and run.  
+//Loop to ust display one color
 void loop() {
+  //DESCRIPTION: This loop sets all pixels to one color, they sit there and don't do anything
+  pixels.show();
+  pixels.rainbow(1, 1, 255, 255, true);
+  //pixels.fill(1, 1, 1); // Idk what I am trying to do here
+  //pixels.Color(10, 50, 10);
+}
 
-  pixels.clear(); // Set all pixel colors to 'off'
-  int colorRed = 0;
-  int colorGreen = 10;
-  int colorBlue = 10;
+
+//This will set all of the pixels to the same color in a seqeunce.
+// Change the values in the call pixels.Color(R,G,B) to change the color
+void loop2() {
+
+  //DESCRIPTION: This loop shoots light like shooting star across left to right, switches colors, then goes right to left, repeats for all colors
+
+  //pixels.clear(); // Set all pixel colors to 'off'
+  //Initalize colors to pink
+  int colorRed= 70;
+  int colorGreen= 5;
+  int colorBlue = 5;
+  //pixels.fill(pixels.ColorHSV((100 * 100), 240, 100));
+  pixels.show();
+
   // The first NeoPixel in a strand is #0, second is 1, all the way up
   // to the count of pixels minus one.
-  for(int i=0; i<NUMPIXELS; i++) { // For each pixel...
 
-    
+  //This for loop will shoot pixels of light across from left to right
+  for(int i=0; i<NUMPIXELS; i++) { // For each pixel...
     //pixels.clear(); // Set all pixel colors to 'off'
     // pixels.Color() takes RGB values, from 0,0,0 up to 255,255,255
     // Here we're using a moderately bright green color:
     //pixels.setPixelColor(i, pixels.Color(0, 50, 0));
     // Here we're using a moderately bright red color:
-    pixels.setPixelColor(i, pixels.Color(colorRed, colorGreen, colorBlue));
+    pixels.fill(pixels.Color(colorRed, colorGreen, colorBlue));
+
+    //If we want each pixel to increase, by a certain amount of colors so that we get an increasing rainbow of sorts, use code below
+    //This code is just to make the pixels shoot back and forth though, so I wont do that
     colorRed += 0;
     colorGreen += 0;
     colorBlue += 0;
@@ -58,6 +78,29 @@ void loop() {
 
     delay(DELAYVAL); // Pause before next pass through loop
   }
+
+  //This for loop will go from right to left, overriding all the old colors.
+  for(int i=NUMPIXELS; i>0; i--) { // For each pixel...
+  //pretty tealish aquamarine color
+    pixels.setPixelColor(i, pixels.Color(10, 50, 10));
+    pixels.show();   // Send the updated pixel colors to the hardware.
+    delay(DELAYVAL); // Pause before next pass through loop
+  }
+
+  //From left to right, new color
+  for(int i=0; i<NUMPIXELS; i++) { // For each pixel...
+    pixels.setPixelColor(i, pixels.Color(100, 30, 40));
+    pixels.show();   // Send the updated pixel colors to the hardware.
+    delay(DELAYVAL); // Pause before next pass through loop
+  }
+
+  //From right to left, new color
+  for(int i=NUMPIXELS; i>0; i--) { // For each pixel...
+    pixels.setPixelColor(i, pixels.Color(10, 40, 90));
+    pixels.show();   // Send the updated pixel colors to the hardware.
+    delay(DELAYVAL); // Pause before next pass through loop
+  }
+
 }
 
 
@@ -66,7 +109,7 @@ void loop() {
 
 // This also shows how to use the print routines to print out the hue value.  Look for "Serial" is this code to see how to open it and use it.
 //
-void loop2()
+void loop3()
 {
   uint16_t hueValue;
   uint8_t brightness;
@@ -86,7 +129,7 @@ void loop2()
 
     pixels.fill(pixels.ColorHSV( hueValue, 240,brightness));
     pixels.show();
-    delay(200);
+    delay(40);
   }
   
 }
