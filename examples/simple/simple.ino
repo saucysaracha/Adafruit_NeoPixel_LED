@@ -37,9 +37,11 @@ void setup() {
 void loop() {
   //DESCRIPTION: This loop sets all pixels to one color, they sit there and don't do anything
   pixels.show();
-  pixels.rainbow(1, 1, 255, 255, true);
+  //pixels.rainbow(1, 1, 255, 255, true);
+  pixels.fill(pixels.Color(60, 10, 10));
   //pixels.fill(1, 1, 1); // Idk what I am trying to do here
-  //pixels.Color(10, 50, 10);
+  //I believe pixels.fill makes all of the pixels one color
+  pixels.setBrightness(255); //Makes pixels brighter or dimmer, uint8_t is 0 through 255 decimal
 }
 
 
@@ -67,7 +69,7 @@ void loop2() {
     // Here we're using a moderately bright green color:
     //pixels.setPixelColor(i, pixels.Color(0, 50, 0));
     // Here we're using a moderately bright red color:
-    pixels.fill(pixels.Color(colorRed, colorGreen, colorBlue));
+    pixels.setPixelColor(i, pixels.Color(70, 0, 0));
 
     //If we want each pixel to increase, by a certain amount of colors so that we get an increasing rainbow of sorts, use code below
     //This code is just to make the pixels shoot back and forth though, so I wont do that
@@ -82,21 +84,35 @@ void loop2() {
   //This for loop will go from right to left, overriding all the old colors.
   for(int i=NUMPIXELS; i>0; i--) { // For each pixel...
   //pretty tealish aquamarine color
-    pixels.setPixelColor(i, pixels.Color(10, 50, 10));
+    pixels.setPixelColor(i, pixels.Color(50, 20, 0));
     pixels.show();   // Send the updated pixel colors to the hardware.
     delay(DELAYVAL); // Pause before next pass through loop
   }
 
   //From left to right, new color
   for(int i=0; i<NUMPIXELS; i++) { // For each pixel...
-    pixels.setPixelColor(i, pixels.Color(100, 30, 40));
+    pixels.setPixelColor(i, pixels.Color(50, 40, 0));
     pixels.show();   // Send the updated pixel colors to the hardware.
     delay(DELAYVAL); // Pause before next pass through loop
   }
 
   //From right to left, new color
   for(int i=NUMPIXELS; i>0; i--) { // For each pixel...
-    pixels.setPixelColor(i, pixels.Color(10, 40, 90));
+    pixels.setPixelColor(i, pixels.Color(0, 50, 4));
+    pixels.show();   // Send the updated pixel colors to the hardware.
+    delay(DELAYVAL); // Pause before next pass through loop
+  }
+
+    //From left to right, new color
+    for(int i=0; i<NUMPIXELS; i++) { // For each pixel...
+    pixels.setPixelColor(i, pixels.Color(20, 70, 70));
+    pixels.show();   // Send the updated pixel colors to the hardware.
+    delay(DELAYVAL); // Pause before next pass through loop
+  }
+
+    //From right to left, new color
+    for(int i=NUMPIXELS; i>0; i--) { // For each pixel...
+    pixels.setPixelColor(i, pixels.Color(50, 0, 50));
     pixels.show();   // Send the updated pixel colors to the hardware.
     delay(DELAYVAL); // Pause before next pass through loop
   }
