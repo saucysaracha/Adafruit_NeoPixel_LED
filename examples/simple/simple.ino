@@ -37,7 +37,7 @@ void setup() {
 void loop() {
   //DESCRIPTION: This loop sets all pixels to one color, they sit there and don't do anything
   pixels.show();
-  //pixels.rainbow(1, 1, 255, 255, true);
+  ////pixels.rainbow(1, 1, 255, 255, true);
   pixels.fill(pixels.Color(60, 10, 10));
   //pixels.fill(1, 1, 1); // Idk what I am trying to do here
   //I believe pixels.fill makes all of the pixels one color
